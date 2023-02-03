@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0 # fetch all history so multiple commits can be scanned
 
       - name: GitGuardian scan, old action repo
-        uses: GitGuardian/ggshield-action@master
+        uses: GitGuardian/ggshield-action@agateau/fix-dubious-ownership
         env:
           GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
           GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
