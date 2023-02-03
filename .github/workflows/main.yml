@@ -6,16 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  scanning:
-    name: GitGuardian scan
+  old-action-scan:
+    name: GitGuardian scan, old action repo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # fetch all history so multiple commits can be scanned
+          fetch-depth: 0
 
-      - name: GitGuardian scan, old action repo
+      - name: GitGuardian scan
         uses: GitGuardian/ggshield-action@agateau/fix-dubious-ownership
         env:
           GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
@@ -24,6 +24,14 @@ jobs:
           GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
 
+  new-action-scan:
+    name: GitGuardian scan, new action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: GitGuardian scan, new action
         uses: GitGuardian/ggshield/actions/secret@main
         env:
