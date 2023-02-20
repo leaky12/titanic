@@ -34,7 +34,7 @@ jobs:
           fetch-depth: 0
 
       - name: GitGuardian scan, new action
-        uses: GitGuardian/ggshield/actions/secret@main
+        uses: GitGuardian/ggshield/actions/secret@agateau/fix-git-dubious-dir2
         env:
           GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
           GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
